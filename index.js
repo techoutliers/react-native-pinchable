@@ -1,3 +1,8 @@
-import { requireNativeComponent } from 'react-native';
+import { requireNativeComponent, NativeModules, View } from "react-native";
 
-export default requireNativeComponent('PinchableView');
+let CustomComponent = View;
+
+if ("PinchableView" in NativeModules.UIManager) {
+   CustomComponent = requireNativeComponent("PinchableView")
+}
+export default CustomComponent;
